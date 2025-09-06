@@ -1,4 +1,5 @@
-dictionary = {1 : 2, 2 : 3}
-# dictionary = {}
+print(len([bit for bit in bin(5)[2:] if bit == "1"]))
+print(len([bit for bit in bin(10)[2:] if bit == "1"]))
+print(len([bit for bit in bin(8)[2:] if bit == "1"]))
+print(len([bit for bit in bin(0)[2:] if bit == "1"]))
 
-print(1 in dictionary.keys())

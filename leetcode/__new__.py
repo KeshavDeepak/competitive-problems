@@ -1,1 +1,1 @@
-print(''.join(sorted('azz')))
+print([1, 2, 3] in [[1, 2, 3]])

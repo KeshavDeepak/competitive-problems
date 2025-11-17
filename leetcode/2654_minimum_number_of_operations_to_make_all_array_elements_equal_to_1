@@ -1,0 +1,40 @@
+class Solution:
+    def get_gcd(self, a, b):
+        if a > b: a,b = b,a
+
+        while a != 0:
+            a,b = b%a, a
+        
+        return b
+
+    def minOperations(self, nums: List[int]) -> int:
+        # check if ones already exist in nums
+        ones_count = nums.count(1)
+
+        if ones_count > 0: # they do exist
+            return len(nums) - ones_count
+        
+        # if no ones, then find smallest subarray whose gcd = 1
+        length = 51 # according to constraints, nums can only be length of 50 max
+
+        for i in range(len(nums)):
+            gcd = nums[i]
+
+            for j in range(i+1, len(nums)):
+                gcd = self.get_gcd(gcd, nums[j])
+
+                if gcd == 1: # found a subarray whose gcd = 1
+                    length = min(length, (1+j-i))
+
+                    print(i, j)
+
+                    break
+        
+        print(length)
+        # return answer if length is valid, otherwise return -1 (not possible)
+        if length < 51: # valid answer exists
+            return (length-1 + len(nums)-1) # L-1 is for creating the first 1 and n-1 is for changing everything else to 1 
+        else:
+            return -1
+
+

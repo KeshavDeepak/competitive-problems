@@ -7,9 +7,7 @@ class Solution:
 
         while left <= right:
             mid = (left + right) // 2
-
-            print(left, right, mid)
-
+            
             # if mid is target, voila
             if nums[mid] == target:
                 return True

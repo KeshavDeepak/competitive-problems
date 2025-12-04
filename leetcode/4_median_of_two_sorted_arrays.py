@@ -31,8 +31,6 @@ class Solution:
             l2 = arr_2[take_from_arr2-1] if take_from_arr2 != 0 else -math.inf
             r2 = arr_2[take_from_arr2] if take_from_arr2 != m else math.inf
 
-            print(l1, r1, l2,r2, take_from_arr, take_from_arr2)
-
             # verify if split is valid or not
             if l1 > r2: 
                 right = take_from_arr - 1

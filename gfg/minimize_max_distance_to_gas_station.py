@@ -2,13 +2,6 @@ import math
 
 class Solution:
     def minMaxDist(self, stations, k):
-        # binary search for answer
-        # l = min gap
-        # r = max gap
-        # simulate and reduce gaps on all stations 
-        # check if reductions_count <= k -- if it is -- hooray -- try lower
-        # if not -- try higher
-        
         n = len(stations)
 
         # ------------ base case

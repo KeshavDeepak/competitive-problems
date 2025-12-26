@@ -7,7 +7,7 @@ class Solution:
         
         return b
 
-    def minOperations(self, nums: List[int]) -> int:
+    def minOperations(self, nums: list[int]) -> int:
         # check if ones already exist in nums
         ones_count = nums.count(1)
 

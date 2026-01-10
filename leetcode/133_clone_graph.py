@@ -1,7 +1,3 @@
-from typing import Optional
-import copy
-
-
 # Definition for a Node.
 class Node:
     def __init__(self, val = 0, neighbors = None):
@@ -9,27 +5,30 @@ class Node:
         self.neighbors = neighbors if neighbors is not None else []
 
 
+from typing import Optional
+from collections import deque
+
 class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
-        return copy.deepcopy(node) # hehe
-            
-            
+        if not node: return None
 
-#helper function
-def build_graph(adj_list):
-    nodes = {}
-    # Create all nodes
-    for i in range(1, len(adj_list)+1):
-        nodes[i] = Node(i)
-    # Add neighbors
-    for idx, neighbors in enumerate(adj_list):
-        nodes[idx+1].neighbors = [nodes[n] for n in neighbors]
-    return nodes[1]
+        new_node = Node(node.val)
+        old_to_new = {node: new_node}
+        queue = deque([node])
 
-# main code
-solution = Solution()
+        while queue:
+            curr_old = queue.popleft()
+            curr_new = old_to_new[curr_old]
 
-# test cases
-adj_list = [[2,4],[1,3],[2,4],[1,3]]
-first_node = build_graph(adj_list)
-print(solution.cloneGraph(first_node))
+            # look through old neighbors and append/create accordingly
+            for old_nbr in curr_old.neighbors:
+                if old_nbr in old_to_new: # neighbor already exists in new graph
+                    curr_new.neighbors.append(old_to_new[old_nbr])
+                else: # neighbor doesn't exist yet, create placeholder new neighbor and append it to queue
+                    new_nbr = Node(old_nbr.val)
+                    old_to_new[old_nbr] = new_nbr
+
+                    curr_new.neighbors.append(new_nbr)
+                    queue.append(old_nbr)
+        
+        return new_node
